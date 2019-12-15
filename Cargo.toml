@@ -1,0 +1,13 @@
+[package]
+name = "cargo-emit"
+version = "0.1.0"
+authors = ["Nikolai Vazquez"]
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/nvzqz/cargo-emit"
+repository = "https://github.com/nvzqz/cargo-emit"
+documentation = "https://docs.rs/cargo-emit"
+description = "Talk to Cargo easily at build time."
+categories = ["development-tools::build-utils", "no-std", "rust-patterns"]
+keywords = ["cargo", "build", "print", "warn"]
+include = ["Cargo.toml", "src", "README.md", "CHANGELOG.md", "LICENSE*"]
+edition = "2018"
