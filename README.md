@@ -20,6 +20,7 @@
     <a href="https://www.paypal.me/nvzqz">
         <img src="https://buymecoffee.intm.org/img/button-paypal-white.png" alt="Buy me a coffee" height="35">
     </a>
+    <br><br>
 </div>
 
 Talk to Cargo easily at build time, brought to you by [Nikolai Vazquez].
