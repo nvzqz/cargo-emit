@@ -1,3 +1,24 @@
+//! <div align="center">
+//!     <a href="https://github.com/nvzqz/cargo-emit">
+//!         <img src="https://raw.githubusercontent.com/nvzqz/cargo-emit/assets/logo.svg?sanitize=true"
+//!              alt="Cargo Emit Logo"
+//!              width="300"
+//!              height="300">
+//!     </a>
+//!     <br><br>
+//!     <a href="https://crates.io/crates/cargo-emit">
+//!         <img src="https://img.shields.io/crates/d/cargo-emit.svg"
+//!              alt="Downloads">
+//!     </a>
+//!     <a href="https://travis-ci.com/nvzqz/cargo-emit">
+//!         <img src="https://travis-ci.com/nvzqz/cargo-emit.svg?branch=master"
+//!              alt="Build Status">
+//!     </a>
+//!     <img src="https://img.shields.io/badge/rustc-^1.37.0-blue.svg"
+//!          alt="rustc ^1.37.0">
+//!     <br><br>
+//! </div>
+//!
 //! Talk to Cargo easily at build time, brought to you by [Nikolai Vazquez].
 //!
 //! This library provides:
