@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog] and this project adheres to
 
 ## [Unreleased]
 
+## [0.1.1] - 2019-12-15
+
 ### Fixed
 - Links to docs for specific macros.
 
@@ -29,4 +31,5 @@ The format is based on [Keep a Changelog] and this project adheres to
 [Keep a Changelog]:    http://keepachangelog.com/en/1.0.0/
 [Semantic Versioning]: http://semver.org/spec/v2.0.0.html
 
-[Unreleased]: https://github.com/nvzqz/static-assertions-rs/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/nvzqz/static-assertions-rs/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/nvzqz/static-assertions-rs/compare/v0.1.0...v0.1.1
