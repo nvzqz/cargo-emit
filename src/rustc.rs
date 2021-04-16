@@ -193,6 +193,6 @@ macro_rules! rustc_link_search {
         $crate::pair!("rustc-link-search", "{}={}", $kind, $path);
     };
     ($($path:expr $(=> $kind:expr)?),+ $(,)?) => { {
-        $($crate::rustc_link_lib!($path $(=> $kind)?);)+
+        $($crate::rustc_link_search!($path $(=> $kind)?);)+
     } };
 }
