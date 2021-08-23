@@ -91,7 +91,6 @@
 #![doc(html_logo_url = "https://raw.githubusercontent.com/nvzqz/cargo-emit/assets/logo.svg?sanitize=true")]
 
 #![deny(missing_docs)]
-#![no_std]
 
 mod pair;
 mod rerun;
