@@ -34,11 +34,11 @@
 /// ```
 #[macro_export]
 macro_rules! rerun_if_changed {
-    ($($path:literal),+ $(,)?) => {
-        $($crate::pair!("rerun-if-changed", $path);)+
+    (to: $stream:expr, $($path:expr),+ $(,)?) => {
+        $($crate::pair!(to: $stream, "rerun-if-changed", "{}", $path);)+
     };
     ($($path:expr),+ $(,)?) => {
-        $($crate::pair!("rerun-if-changed", "{}", $path);)+
+        $crate::rerun_if_changed!(to: std::io::stdout(), $($path),+);
     };
 }
 
@@ -73,10 +73,10 @@ macro_rules! rerun_if_changed {
 /// [`rerun_if_env_changed!`]: macro.rerun_if_env_changed.html
 #[macro_export]
 macro_rules! rerun_if_env_changed {
-    ($($var:literal),+ $(,)?) => {
-        $($crate::pair!("rerun-if-env-changed", $var);)+
+    (to: $stream:expr, $($var:expr),+ $(,)?) => {
+        $($crate::pair!(to: $stream, "rerun-if-env-changed", "{}", $var);)+
     };
     ($($var:expr),+ $(,)?) => {
-        $($crate::pair!("rerun-if-env-changed", "{}", $var);)+
+        $crate::rerun_if_env_changed!(to: std::io::stdout(), "{}", $($var),+);
     };
 }

@@ -30,7 +30,10 @@
 /// ```
 #[macro_export]
 macro_rules! warning {
+    (to: $stream:expr, $($args:tt)+) => {
+        $crate::pair!(to: $stream, "warning", $($args)+)
+    };
     ($($args:tt)+) => {
-        $crate::pair!("warning", $($args)+)
+        $crate::warning!(to: std::io::stdout(), $($args)+)
     };
 }

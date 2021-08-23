@@ -31,8 +31,11 @@
 /// ```
 #[macro_export]
 macro_rules! rustc_cfg {
+    (to: $stream:expr, $feature:expr $(, $($args:tt)*)?) => {
+        $crate::pair!(to: $stream, "rustc-cfg", $feature $(, $($args)+)?);
+    };
     ($feature:expr $(, $($args:tt)*)?) => {
-        $crate::pair!("rustc-cfg", $feature $(, $($args)+)?);
+        $crate::rustc_cfg!(to: std::io::stdout(), $feature $(, $($args)+)?);
     };
 }
 
@@ -58,8 +61,11 @@ macro_rules! rustc_cfg {
 /// ```
 #[macro_export]
 macro_rules! rustc_env {
+    (to: $stream:expr, $var:expr, $value:expr $(, $($args:tt)*)?) => {
+        $crate::pair!(to: $stream, "rustc-env", concat!($var, "=", $value) $(, $($args)+)?);
+    };
     ($var:expr, $value:expr $(, $($args:tt)*)?) => {
-        $crate::pair!("rustc-env", concat!($var, "=", $value) $(, $($args)+)?);
+        $crate::rustc_env!(to: std::io::stdout(), $var, $value $(, $($args)+)?);
     };
 }
 
@@ -85,11 +91,17 @@ macro_rules! rustc_env {
 /// ```
 #[macro_export]
 macro_rules! rustc_flags {
+    (to: $stream:expr, $($flags:literal),+ $(,)?) => {
+        $($crate::pair!(to: $stream, "rustc-flags", $flags);)+
+    };
+    (to: $stream:expr, $($flags:expr),+ $(,)?) => {
+        $($crate::pair!(to: $stream, "rustc-flags", "{}", $flags);)+
+    };
     ($($flags:literal),+ $(,)?) => {
-        $($crate::pair!("rustc-flags", $flags);)+
+        $crate::rustc_flags!(to: std::io::stdout(), $flags);
     };
     ($($flags:expr),+ $(,)?) => {
-        $($crate::pair!("rustc-flags", "{}", $flags);)+
+        $crate::rustc_flags!(to: std::io::stdout(), $flags);
     };
 }
 
@@ -114,11 +126,17 @@ macro_rules! rustc_flags {
 /// ```
 #[macro_export]
 macro_rules! rustc_cdylib_link_arg {
+    (to: $stream:expr, $($flag:literal),+ $(,)?) => {
+        $($crate::pair!(to: $stream, "rustc-cdylib-link-arg", $flag);)+
+    };
+    (to: $stream:expr, $($flag:expr),+ $(,)?) => {
+        $($crate::pair!(to: $stream, "rustc-cdylib-link-arg", "{}", $flag);)+
+    };
     ($($flag:literal),+ $(,)?) => {
-        $($crate::pair!("rustc-cdylib-link-arg", $flag);)+
+        $crate::rustc_cdylib_link_arg!(to: std::io::stdout(), $($flag),+);
     };
     ($($flag:expr),+ $(,)?) => {
-        $($crate::pair!("rustc-cdylib-link-arg", "{}", $flag);)+
+        $crate::rustc_cdylib_link_arg!(to: std::io::stdout(), $($flag),+);
     };
 }
 
@@ -143,20 +161,36 @@ macro_rules! rustc_cdylib_link_arg {
 /// ```
 #[macro_export]
 macro_rules! rustc_link_lib {
+    (to: $stream:expr, $name:literal $(,)?) => {
+        $crate::pair!(to: $stream, "rustc-link-lib", $name);
+    };
+    (to: $stream:expr, $name:expr $(,)?) => {
+        $crate::pair!(to: $stream, "rustc-link-lib", "{}", $name);
+    };
+    (to: $stream:expr, $name:literal => $kind:literal $(,)?) => {
+        $crate::pair!(to: $stream, "rustc-link-lib", concat!($kind, "=", $name));
+    };
+    (to: $stream:expr, $name:expr => $kind:expr $(,)?) => {
+        $crate::pair!(to: $stream, "rustc-link-lib", "{}={}", $kind, $name);
+    };
+    (to: $stream:expr, $($name:expr $(=> $kind:expr)?),+ $(,)?) => { {
+        $($crate::rustc_link_lib!(to: $stream, $name $(=> $kind)?);)+
+    } };
+
     ($name:literal $(,)?) => {
-        $crate::pair!("rustc-link-lib", $name);
+        $crate::pair!(to: std::io::stdout(), $name);
     };
     ($name:expr $(,)?) => {
-        $crate::pair!("rustc-link-lib", "{}", $name);
+        $crate::pair!(to: std::io::stdout(), $name);
     };
     ($name:literal => $kind:literal $(,)?) => {
-        $crate::pair!("rustc-link-lib", concat!($kind, "=", $name));
+        $crate::pair!(to: std::io::stdout(), $name => $kind);
     };
     ($name:expr => $kind:expr $(,)?) => {
-        $crate::pair!("rustc-link-lib", "{}={}", $kind, $name);
+        $crate::pair!(to: std::io::stdout(), $name => $kind);
     };
     ($($name:expr $(=> $kind:expr)?),+ $(,)?) => { {
-        $($crate::rustc_link_lib!($name $(=> $kind)?);)+
+        $($crate::rustc_link_lib!(to: std::io::stdout(), $name $(=> $kind)?);)+
     } };
 }
 
@@ -180,19 +214,35 @@ macro_rules! rustc_link_lib {
 /// ```
 #[macro_export]
 macro_rules! rustc_link_search {
+    (to: $stream:expr, $path:literal $(,)?) => {
+        $crate::pair!(to: $stream, "rustc-link-search", $path);
+    };
+    (to: $stream:expr, $path:expr $(,)?) => {
+        $crate::pair!(to: $stream, "rustc-link-search", "{}", $path);
+    };
+    (to: $stream:expr, $path:literal => $kind:literal $(,)?) => {
+        $crate::pair!(to: $stream, "rustc-link-search", concat!($kind, "=", $path));
+    };
+    (to: $stream:expr, $path:expr => $kind:expr $(,)?) => {
+        $crate::pair!(to: $stream, "rustc-link-search", "{}={}", $kind, $path);
+    };
+    (to: $stream:expr, $($path:expr $(=> $kind:expr)?),+ $(,)?) => { {
+        $($crate::rustc_link_lib!(to: $stream, $path $(=> $kind)?);)+
+    } };
+
     ($path:literal $(,)?) => {
-        $crate::pair!("rustc-link-search", $path);
+        $crate::pair!(to: std::io::stdout(), $path);
     };
     ($path:expr $(,)?) => {
-        $crate::pair!("rustc-link-search", "{}", $path);
+        $crate::pair!(to: std::io::stdout(), $path);
     };
     ($path:literal => $kind:literal $(,)?) => {
-        $crate::pair!("rustc-link-search", concat!($kind, "=", $path));
+        $crate::pair!(to: std::io::stdout(), $path => $kind);
     };
     ($path:expr => $kind:expr $(,)?) => {
-        $crate::pair!("rustc-link-search", "{}={}", $kind, $path);
+        $crate::pair!(to: std::io::stdout(), $path => $kind);
     };
     ($($path:expr $(=> $kind:expr)?),+ $(,)?) => { {
-        $($crate::rustc_link_lib!($path $(=> $kind)?);)+
+        $($crate::rustc_link_search!(to: std::io::stdout(), $path $(=> $kind)?);)+
     } };
 }

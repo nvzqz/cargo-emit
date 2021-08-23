@@ -27,7 +27,12 @@
 /// [build script outputs]: https://doc.rust-lang.org/cargo/reference/build-scripts.html#outputs-of-the-build-script
 #[macro_export]
 macro_rules! pair {
+    (to: $stream:expr, $key:expr, $value:expr $(, $($args:tt)*)?) => {{
+        use std::io::Write as _;
+        use std::fmt::Write as _;
+        writeln!($stream, concat!("cargo:", $key, "=", $value) $(, $($args)*)?).unwrap()
+    }};
     ($key:expr, $value:expr $(, $($args:tt)*)?) => {
-        println!(concat!("cargo:", $key, "=", $value) $(, $($args)+)?)
+        $crate::pair!(to: std::io::stdout(), $key, $value $(, $($args)*)?);
     };
 }
