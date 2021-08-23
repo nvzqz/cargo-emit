@@ -20,14 +20,8 @@
 /// ```
 #[macro_export]
 macro_rules! rustc_flags {
-    (to: $stream:expr, $($flags:literal),+ $(,)?) => {
-        $($crate::pair!(to: $stream, "rustc-flags", $flags);)+
-    };
     (to: $stream:expr, $($flags:expr),+ $(,)?) => {
         $($crate::pair!(to: $stream, "rustc-flags", "{}", $flags);)+
-    };
-    ($($flags:literal),+ $(,)?) => {
-        $crate::rustc_flags!(to: std::io::stdout(), $($flags),+);
     };
     ($($flags:expr),+ $(,)?) => {
         $crate::rustc_flags!(to: std::io::stdout(), $($flags),+);

@@ -19,14 +19,8 @@
 /// ```
 #[macro_export]
 macro_rules! rustc_cdylib_link_arg {
-    (to: $stream:expr, $($flag:literal),+ $(,)?) => {
-        $($crate::pair!(to: $stream, "rustc-cdylib-link-arg", $flag);)+
-    };
     (to: $stream:expr, $($flag:expr),+ $(,)?) => {
         $($crate::pair!(to: $stream, "rustc-cdylib-link-arg", "{}", $flag);)+
-    };
-    ($($flag:literal),+ $(,)?) => {
-        $crate::rustc_cdylib_link_arg!(to: std::io::stdout(), $($flag),+);
     };
     ($($flag:expr),+ $(,)?) => {
         $crate::rustc_cdylib_link_arg!(to: std::io::stdout(), $($flag),+);
