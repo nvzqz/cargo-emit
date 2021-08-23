@@ -12,3 +12,6 @@ categories = ["development-tools::build-utils", "no-std", "rust-patterns"]
 keywords = ["cargo", "build", "print", "warn"]
 include = ["Cargo.toml", "src", "README.md", "CHANGELOG.md", "LICENSE*"]
 edition = "2018"
+
+[dev-dependencies]
+insta = "1.7.2"
