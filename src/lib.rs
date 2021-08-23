@@ -93,76 +93,7 @@
 #![deny(missing_docs)]
 #![no_std]
 
+mod pair;
 mod rerun;
 mod rustc;
-
-/// Emits a `$key`/`$value` pair to Cargo based on [build script outputs].
-///
-/// This is equivalent to:
-///
-/// ```
-/// println!("cargo:$key=$value");
-/// ```
-///
-/// This is the base macro upon which the other macros are built.
-///
-/// # Examples
-///
-/// This can be used to emit arbitrary user-defined metadata.
-///
-/// ```
-/// cargo_emit::pair!("root", "/path/to/root");
-/// ```
-///
-/// The `$key` and `$value` parameters get concatenated into a single formatting
-/// string. Formatting runtime values can be done by passing subsequent values.
-///
-/// ```
-/// let name = "foo";
-/// cargo_emit::pair!("{lib}dir", "/path/to/{lib}", lib = name);
-/// ```
-///
-/// [build script outputs]: https://doc.rust-lang.org/cargo/reference/build-scripts.html#outputs-of-the-build-script
-#[macro_export]
-macro_rules! pair {
-    ($key:expr, $value:expr $(, $($args:tt)*)?) => {
-        println!(concat!("cargo:", $key, "=", $value) $(, $($args)+)?)
-    };
-}
-
-/// Tells Cargo to print the formatted `warning` message.
-///
-/// This is equivalent to:
-///
-/// ```
-/// println!("cargo:warning=$args");
-/// ```
-///
-/// # Examples
-///
-/// Useful for showing when something expected (but not critical) has failed.
-///
-/// ```
-/// match std::env::current_dir() {
-///     Ok(dir) => // ...
-///     # {},
-///     Err(error) => cargo_emit::warning!(
-///         "Something suspicious is happening: {}",
-///         error,
-///     ),
-/// }
-/// ```
-///
-/// Assuming you're building `my-crate`, you will see:
-///
-/// ```sh
-/// $ cargo build
-///    Compiling my-crate v0.1.0 (/path/to/my-crate)
-/// warning: Something suspicious is happening: ...
-/// ```
-#[macro_export]
-macro_rules! warning {
-    ($($args:tt)+) => {
-        $crate::pair!("warning", $($args)+)
-    };
-}
+mod warning;
