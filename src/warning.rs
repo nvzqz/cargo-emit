@@ -42,7 +42,6 @@
 ///    Compiling my-crate v0.1.0 (/path/to/my-crate)
 /// warning: Something suspicious is happening: ...
 /// ```
-
 #[macro_export]
 macro_rules! warning {
     (to: $stream:expr, $($args:tt)+) => {
