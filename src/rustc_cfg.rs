@@ -21,6 +21,24 @@
 /// }
 /// ```
 ///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// # struct Cargo;
+/// # impl Cargo {
+/// #   fn can_bench(&self) -> bool { true }
+/// # }
+/// # let cargo = Cargo;
+/// let mut stdout = std::io::stdout();    
+/// // ...
+/// if cargo.can_bench() {
+///     cargo_emit::rustc_cfg!(
+///         to: stdout,
+///         "bench"
+///     );
+/// }
+/// ```
+///
 /// Then outside of `build.rs`:
 ///
 /// ```

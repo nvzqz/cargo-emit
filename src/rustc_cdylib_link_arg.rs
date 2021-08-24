@@ -17,6 +17,21 @@
 /// # "";
 /// cargo_emit::rustc_cdylib_link_arg!(flag1, flag2);
 /// ```
+///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// let flag1 = // ...
+/// # "";
+/// let flag2 = // ...
+/// # "";
+/// let mut stdout = std::io::stdout();
+/// // ...
+/// cargo_emit::rustc_cdylib_link_arg!(
+///     to: stdout,
+///     flag1, flag2
+/// );
+/// ```
 #[macro_export]
 macro_rules! rustc_cdylib_link_arg {
     (to: $stream:expr, $($flag:expr),+ $(,)?) => {

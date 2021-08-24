@@ -25,6 +25,17 @@
 /// cargo_emit::rerun_if_env_changed!("MY_DEPENDENCY", "PATH");
 /// ```
 ///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// let mut stdout = std::io::stdout();
+/// // ...
+/// cargo_emit::rerun_if_env_changed!(
+///     to: stdout,
+///     "MY_DEPENDENCY", "PATH"
+/// );
+/// ```
+///
 /// [`rerun_if_changed!`]: macro.rerun_if_changed.html
 /// [`rerun_if_env_changed!`]: macro.rerun_if_env_changed.html
 #[macro_export]

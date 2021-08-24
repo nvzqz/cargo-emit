@@ -32,6 +32,18 @@
 ///     "/path/to/resource2",
 /// );
 /// ```
+///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// let mut stdout = std::io::stdout();
+/// // ..
+/// cargo_emit::rerun_if_changed!(
+///     to: stdout,
+///     "/path/to/resource1",
+///     "/path/to/resource2",
+/// );
+/// ```
 #[macro_export]
 macro_rules! rerun_if_changed {
     (to: $stream:expr, $($path:expr),+ $(,)?) => {

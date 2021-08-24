@@ -18,6 +18,19 @@
 /// # "0000111122223333444455556666777788889999";
 /// cargo_emit::rustc_env!("MY_HASH", "{}", git_rev_hash);
 /// ```
+///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// let mut stdout = std::io::stdout();
+/// // ...
+/// let git_rev_hash = // ...
+/// # "0000111122223333444455556666777788889999";
+/// cargo_emit::rustc_env!(
+///     to: stdout,
+///    "MY_HASH", "{}", git_rev_hash
+/// );
+/// ```
 #[macro_export]
 macro_rules! rustc_env {
     (to: $stream:expr, $var:expr, $value:expr $(, $($args:tt)*)?) => {

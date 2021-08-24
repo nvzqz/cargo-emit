@@ -20,6 +20,21 @@
 /// }
 /// ```
 ///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// let mut stdout = std::io::stdout();
+/// // ...
+/// match std::env::current_dir() {
+///     Ok(dir) => { /* ... */ }
+///     Err(error) => cargo_emit::warning!(
+///         to: stdout,
+///         "Something suspicious is happening: {}",
+///         error,
+///     ),
+/// }
+/// ```
+///
 /// Assuming you're building `my-crate`, you will see:
 ///
 /// ```sh
@@ -27,6 +42,7 @@
 ///    Compiling my-crate v0.1.0 (/path/to/my-crate)
 /// warning: Something suspicious is happening: ...
 /// ```
+
 #[macro_export]
 macro_rules! warning {
     (to: $stream:expr, $($args:tt)+) => {

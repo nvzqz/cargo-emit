@@ -11,11 +11,24 @@
 /// Useful for telling the linker what libraries should be linked.
 ///
 /// ```
-/// cargo_emit::rustc_link_lib! {
+/// cargo_emit::rustc_link_lib!(
 ///     "ssl", // same as `=> "dylib"`
 ///     "ruby" => "static",
 ///     "CoreFoundation" => "framework",
-/// }
+/// );
+/// ```
+///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// let mut stdout = std::io::stdout();
+/// // ...
+/// cargo_emit::rustc_link_lib!(
+///     to: stdout,
+///     "ssl", // same as `=> "dylib"`
+///     "ruby" => "static",
+///     "CoreFoundation" => "framework",
+/// );
 /// ```
 #[macro_export]
 macro_rules! rustc_link_lib {

@@ -16,6 +16,18 @@
 ///     "path/to/ruby/lib/" => "native",
 /// );
 /// ```
+///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// let mut stdout = std::io::stdout();
+/// // ...
+/// cargo_emit::rustc_link_search!(
+///     to: stdout,
+///     "path/to/ssl/lib/", // same as `=> "all"`
+///     "path/to/ruby/lib/" => "native",
+/// );
+/// ```
 #[macro_export]
 macro_rules! rustc_link_search {
     (to: $stream:expr, $path:expr $(,)?) => {

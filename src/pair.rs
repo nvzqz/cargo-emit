@@ -16,6 +16,17 @@
 /// cargo_emit::pair!("root", "/path/to/root");
 /// ```
 ///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// let mut stdout = std::io::stdout();
+/// // ...
+/// cargo_emit::pair!(
+///     to: stdout,
+///     "root", "/path/to/root"
+/// );
+/// ```
+///
 /// The `$key` and `$value` parameters get concatenated into a single formatting
 /// string. Formatting runtime values can be done by passing subsequent values.
 ///

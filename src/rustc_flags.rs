@@ -14,9 +14,18 @@
 /// string. Formatting runtime values can be done by passing subsequent values.
 ///
 /// ```
-/// let git_rev_hash = //
-/// # "0000111122223333444455556666777788889999";
 /// cargo_emit::rustc_flags!("-l pthread");
+/// ```
+///
+/// or, in case you want it to emit to a custom stream:
+///
+/// ```
+/// let mut stdout = std::io::stdout();
+/// // ...
+/// cargo_emit::rustc_flags!(
+///     to: stdout,
+///     "-l pthread"
+/// );
 /// ```
 #[macro_export]
 macro_rules! rustc_flags {
