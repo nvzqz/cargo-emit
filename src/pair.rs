@@ -40,9 +40,7 @@
 macro_rules! pair {
     (to: $stream:expr, $key:expr, $value:expr $(, $($args:tt)*)?) => {{
         #[allow(unused_imports)]
-        use std::io::Write as _;
-        #[allow(unused_imports)]
-        use std::fmt::Write as _;
+        use std::{fmt::Write as _, io::Write as _};
         writeln!($stream, concat!("cargo:", $key, "=", $value) $(, $($args)*)?).unwrap()
     }};
     ($key:expr, $value:expr $(, $($args:tt)*)?) => {
