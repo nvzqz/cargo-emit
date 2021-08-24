@@ -48,33 +48,33 @@ mod tests {
 
     #[test]
     fn single_literal() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rerun_if_changed!(
                     to: output,
                     "/path/to/resource"
                 );
             }),
-            @r###""cargo:rerun-if-changed=/path/to/resource\n""###
+            @"cargo:rerun-if-changed=/path/to/resource\n"
         );
     }
 
     #[test]
     fn single_expression() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rerun_if_changed!(
                     to: output,
                     PathBuf::from("/path/to/resource").display()
                 );
             }),
-            @r###""cargo:rerun-if-changed=/path/to/resource\n""###
+            @"cargo:rerun-if-changed=/path/to/resource\n"
         );
     }
 
     #[test]
     fn multiple_literals() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rerun_if_changed!(
                     to: output,
@@ -84,13 +84,13 @@ mod tests {
                     "/path/to/resource4",
                 );
             }),
-            @r###""cargo:rerun-if-changed=/path/to/resource1\ncargo:rerun-if-changed=/path/to/resource2\ncargo:rerun-if-changed=/path/to/resource3\ncargo:rerun-if-changed=/path/to/resource4\n""###
+            @"cargo:rerun-if-changed=/path/to/resource1\ncargo:rerun-if-changed=/path/to/resource2\ncargo:rerun-if-changed=/path/to/resource3\ncargo:rerun-if-changed=/path/to/resource4\n"
         );
     }
 
     #[test]
     fn multiple_expressions() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rerun_if_changed!(
                     to: output,
@@ -100,13 +100,13 @@ mod tests {
                     PathBuf::from("/path/to/resource4").display(),
                 );
             }),
-            @r###""cargo:rerun-if-changed=/path/to/resource1\ncargo:rerun-if-changed=/path/to/resource2\ncargo:rerun-if-changed=/path/to/resource3\ncargo:rerun-if-changed=/path/to/resource4\n""###
+            @"cargo:rerun-if-changed=/path/to/resource1\ncargo:rerun-if-changed=/path/to/resource2\ncargo:rerun-if-changed=/path/to/resource3\ncargo:rerun-if-changed=/path/to/resource4\n"
         );
     }
 
     #[test]
     fn multiple_mixed() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rerun_if_changed!(
                     to: output,
@@ -116,7 +116,7 @@ mod tests {
                     PathBuf::from("/path/to/resource4").display(),
                 );
             }),
-            @r###""cargo:rerun-if-changed=/path/to/resource1\ncargo:rerun-if-changed=/path/to/resource2\ncargo:rerun-if-changed=/path/to/resource3\ncargo:rerun-if-changed=/path/to/resource4\n""###
+            @"cargo:rerun-if-changed=/path/to/resource1\ncargo:rerun-if-changed=/path/to/resource2\ncargo:rerun-if-changed=/path/to/resource3\ncargo:rerun-if-changed=/path/to/resource4\n"
         );
     }
 }

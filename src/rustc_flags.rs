@@ -32,20 +32,20 @@ macro_rules! rustc_flags {
 mod tests {
     #[test]
     fn single() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_flags!(
                     to: output,
                     "FLAG"
                 );
             }),
-            @r###""cargo:rustc-flags=FLAG\n""###
+            @"cargo:rustc-flags=FLAG\n"
         );
     }
 
     #[test]
     fn multiple() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_flags!(
                     to: output,
@@ -53,7 +53,7 @@ mod tests {
                     "FLAG2",
                 );
             }),
-            @r###""cargo:rustc-flags=FLAG1\ncargo:rustc-flags=FLAG2\n""###
+            @"cargo:rustc-flags=FLAG1\ncargo:rustc-flags=FLAG2\n"
         );
     }
 }

@@ -41,42 +41,42 @@ macro_rules! warning {
 mod tests {
     #[test]
     fn single_literal() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::warning!(
                     to: output,
                     "WARNING"
                 );
             }),
-            @r###""cargo:warning=WARNING\n""###
+            @"cargo:warning=WARNING\n"
         );
     }
 
     #[test]
     fn single_formatted_by_index() {
         // Formatted argument:
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::warning!(
                     to: output,
                     "{}", "WARNING"
                 );
             }),
-            @r###""cargo:warning=WARNING\n""###
+            @"cargo:warning=WARNING\n"
         );
     }
 
     #[test]
     fn single_formatted_by_key() {
         // Formatted argument:
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::warning!(
                     to: output,
                     "{warning}", warning = "WARNING"
                 );
             }),
-            @r###""cargo:warning=WARNING\n""###
+            @"cargo:warning=WARNING\n"
         );
     }
 }

@@ -32,92 +32,92 @@ macro_rules! rustc_env {
 mod tests {
     #[test]
     fn single_literal() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_env!(
                     to: output,
                     "KEY", "VALUE"
                 );
             }),
-            @r###""cargo:rustc-env=KEY=VALUE\n""###
+            @"cargo:rustc-env=KEY=VALUE\n"
         );
     }
 
     #[test]
     fn single_with_key_formatted_by_index() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_env!(
                     to: output,
                     "{}", "VALUE", "KEY"
                 );
             }),
-            @r###""cargo:rustc-env=KEY=VALUE\n""###
+            @"cargo:rustc-env=KEY=VALUE\n"
         );
     }
 
     #[test]
     fn single_with_key_formatted_by_name() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_env!(
                     to: output,
                     "{key}", "VALUE", key = "KEY"
                 );
             }),
-            @r###""cargo:rustc-env=KEY=VALUE\n""###
+            @"cargo:rustc-env=KEY=VALUE\n"
         );
     }
 
     #[test]
     fn single_with_value_formatted_by_index() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_env!(
                     to: output,
                     "KEY", "{}", "VALUE"
                 );
             }),
-            @r###""cargo:rustc-env=KEY=VALUE\n""###
+            @"cargo:rustc-env=KEY=VALUE\n"
         );
     }
 
     #[test]
     fn single_with_value_formatted_by_name() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_env!(
                     to: output,
                     "KEY", "{value}", value = "VALUE"
                 );
             }),
-            @r###""cargo:rustc-env=KEY=VALUE\n""###
+            @"cargo:rustc-env=KEY=VALUE\n"
         );
     }
 
     #[test]
     fn single_with_key_and_value_formatted_by_index() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_env!(
                     to: output,
                     "{}", "{}", "KEY", "VALUE"
                 );
             }),
-            @r###""cargo:rustc-env=KEY=VALUE\n""###
+            @"cargo:rustc-env=KEY=VALUE\n"
         );
     }
 
     #[test]
     fn single_with_key_and_value_formatted_by_name() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_env!(
                     to: output,
                     "{key}", "{value}", key = "KEY", value = "VALUE"
                 );
             }),
-            @r###""cargo:rustc-env=KEY=VALUE\n""###
+            @"cargo:rustc-env=KEY=VALUE\n"
         );
     }
 }

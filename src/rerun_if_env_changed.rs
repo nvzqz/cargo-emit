@@ -41,20 +41,20 @@ macro_rules! rerun_if_env_changed {
 mod tests {
     #[test]
     fn single() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rerun_if_env_changed!(
                     to: output,
                     "KEY"
                 );
             }),
-            @r###""cargo:rerun-if-env-changed=KEY\n""###
+            @"cargo:rerun-if-env-changed=KEY\n"
         );
     }
 
     #[test]
     fn multiple() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rerun_if_env_changed!(
                     to: output,
@@ -63,7 +63,7 @@ mod tests {
                     "KEY3",
                 );
             }),
-            @r###""cargo:rerun-if-env-changed=KEY1\ncargo:rerun-if-env-changed=KEY2\ncargo:rerun-if-env-changed=KEY3\n""###
+            @"cargo:rerun-if-env-changed=KEY1\ncargo:rerun-if-env-changed=KEY2\ncargo:rerun-if-env-changed=KEY3\n"
         );
     }
 }

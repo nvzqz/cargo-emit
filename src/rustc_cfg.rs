@@ -43,27 +43,27 @@ macro_rules! rustc_cfg {
 mod tests {
     #[test]
     fn literal() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_cfg!(
                     to: output,
                     "CFG"
                 );
             }),
-            @r###""cargo:rustc-cfg=CFG\n""###
+            @"cargo:rustc-cfg=CFG\n"
         );
     }
 
     #[test]
     fn formatted() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_cfg!(
                     to: output,
                     "{}", "CFG"
                 );
             }),
-            @r###""cargo:rustc-cfg=CFG\n""###
+            @"cargo:rustc-cfg=CFG\n"
         );
     }
 }

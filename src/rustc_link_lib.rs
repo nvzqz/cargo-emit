@@ -43,20 +43,20 @@ macro_rules! rustc_link_lib {
 mod tests {
     #[test]
     fn single_name_literal() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_link_lib!(
                     to: output,
                     "NAME"
                 );
             }),
-            @r###""cargo:rustc-link-lib=NAME\n""###
+            @"cargo:rustc-link-lib=NAME\n"
         );
     }
 
     #[test]
     fn single_name_expression() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 let name = "NAME";
                 crate::rustc_link_lib!(
@@ -64,26 +64,26 @@ mod tests {
                     name
                 );
             }),
-            @r###""cargo:rustc-link-lib=NAME\n""###
+            @"cargo:rustc-link-lib=NAME\n"
         );
     }
 
     #[test]
     fn single_name_literal_with_kind() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 crate::rustc_link_lib!(
                     to: output,
                     "NAME" => "KIND"
                 );
             }),
-            @r###""cargo:rustc-link-lib=KIND=NAME\n""###
+            @"cargo:rustc-link-lib=KIND=NAME\n"
         );
     }
 
     #[test]
     fn single_name_expression_with_kind() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 let name = "NAME";
                 let kind = "KIND";
@@ -92,13 +92,13 @@ mod tests {
                     name => kind
                 );
             }),
-            @r###""cargo:rustc-link-lib=KIND=NAME\n""###
+            @"cargo:rustc-link-lib=KIND=NAME\n"
         );
     }
 
     #[test]
     fn multiple_name_expression_with_kind() {
-        insta::assert_debug_snapshot!(
+        insta::assert_display_snapshot!(
             crate::capture_output(|output| {
                 let name2 = "NAME2";
                 let kind2 = "KIND2";
@@ -108,7 +108,7 @@ mod tests {
                     name2 => kind2,
                 );
             }),
-            @r###""cargo:rustc-link-lib=KIND1=NAME1\ncargo:rustc-link-lib=KIND2=NAME2\n""###
+            @"cargo:rustc-link-lib=KIND1=NAME1\ncargo:rustc-link-lib=KIND2=NAME2\n"
         );
     }
 }
