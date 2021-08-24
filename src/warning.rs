@@ -24,7 +24,6 @@
 ///
 /// ```
 /// let mut stdout = std::io::stdout();
-/// // ...
 /// match std::env::current_dir() {
 ///     Ok(dir) => { /* ... */ }
 ///     Err(error) => cargo_emit::warning!(

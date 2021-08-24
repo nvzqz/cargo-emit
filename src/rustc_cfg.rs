@@ -30,7 +30,6 @@
 /// # }
 /// # let cargo = Cargo;
 /// let mut stdout = std::io::stdout();    
-/// // ...
 /// if cargo.can_bench() {
 ///     cargo_emit::rustc_cfg!(
 ///         to: stdout,

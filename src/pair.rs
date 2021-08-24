@@ -20,7 +20,6 @@
 ///
 /// ```
 /// let mut stdout = std::io::stdout();
-/// // ...
 /// cargo_emit::pair!(
 ///     to: stdout,
 ///     "root", "/path/to/root"

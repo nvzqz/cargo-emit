@@ -29,7 +29,6 @@
 ///
 /// ```
 /// let mut stdout = std::io::stdout();
-/// // ...
 /// cargo_emit::rerun_if_env_changed!(
 ///     to: stdout,
 ///     "MY_DEPENDENCY", "PATH"

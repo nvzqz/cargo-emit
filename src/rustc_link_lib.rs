@@ -22,7 +22,6 @@
 ///
 /// ```
 /// let mut stdout = std::io::stdout();
-/// // ...
 /// cargo_emit::rustc_link_lib!(
 ///     to: stdout,
 ///     "ssl", // same as `=> "dylib"`

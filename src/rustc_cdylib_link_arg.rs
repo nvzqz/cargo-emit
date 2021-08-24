@@ -26,7 +26,6 @@
 /// let flag2 = // ...
 /// # "";
 /// let mut stdout = std::io::stdout();
-/// // ...
 /// cargo_emit::rustc_cdylib_link_arg!(
 ///     to: stdout,
 ///     flag1, flag2

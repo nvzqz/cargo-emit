@@ -21,7 +21,6 @@
 ///
 /// ```
 /// let mut stdout = std::io::stdout();
-/// // ...
 /// cargo_emit::rustc_flags!(
 ///     to: stdout,
 ///     "-l pthread"

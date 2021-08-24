@@ -21,7 +21,6 @@
 ///
 /// ```
 /// let mut stdout = std::io::stdout();
-/// // ...
 /// cargo_emit::rustc_link_search!(
 ///     to: stdout,
 ///     "path/to/ssl/lib/", // same as `=> "all"`
