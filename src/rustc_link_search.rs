@@ -40,13 +40,13 @@ macro_rules! rustc_link_search {
         $($crate::rustc_link_search!(to: $stream, $path $(=> $kind)?);)+
     } };
     ($path:expr $(,)?) => {
-        $crate::pair!(to: std::io::stdout(), $path);
+        $crate::rustc_link_search!(to: std::io::stdout(), $path);
     };
     ($path:expr => $kind:expr $(,)?) => {
-        $crate::pair!(to: std::io::stdout(), $path => $kind);
+        $crate::rustc_link_search!(to: std::io::stdout(), $path => $kind);
     };
     ($($path:expr $(=> $kind:expr)?),+ $(,)?) => { {
-        $($crate::rustc_link_search!(to: std::io::stdout(), $path $(=> $kind)?);)+
+        $crate::rustc_link_search!(to: std::io::stdout(), $($path $(=> $kind)?),+);
     } };
 }
 

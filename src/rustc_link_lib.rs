@@ -42,13 +42,13 @@ macro_rules! rustc_link_lib {
         $($crate::rustc_link_lib!(to: $stream, $name $(=> $kind)?);)+
     } };
     ($name:expr $(,)?) => {
-        $crate::pair!(to: std::io::stdout(), $name);
+        $crate::rustc_link_lib!(to: std::io::stdout(), $name);
     };
     ($name:expr => $kind:expr $(,)?) => {
-        $crate::pair!(to: std::io::stdout(), $name => $kind);
+        $crate::rustc_link_lib!(to: std::io::stdout(), $name => $kind);
     };
     ($($name:expr $(=> $kind:expr)?),+ $(,)?) => { {
-        $($crate::rustc_link_lib!(to: std::io::stdout(), $name $(=> $kind)?);)+
+        $crate::rustc_link_lib!(to: std::io::stdout(), $($name $(=> $kind)?),+);
     } };
 }
 
