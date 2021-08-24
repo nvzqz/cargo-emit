@@ -107,7 +107,8 @@ mod tests {
                     path2 => kind2,
                 );
             }),
-            @"cargo:rustc-link-search=KIND1=PATH1\ncargo:rustc-link-search=KIND2=PATH2\n"
+            @"cargo:rustc-link-search=KIND1=PATH1\n\
+              cargo:rustc-link-search=KIND2=PATH2\n"
         );
     }
 }

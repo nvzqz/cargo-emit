@@ -53,7 +53,8 @@ mod tests {
                     "FLAG2",
                 );
             }),
-            @"cargo:rustc-flags=FLAG1\ncargo:rustc-flags=FLAG2\n"
+            @"cargo:rustc-flags=FLAG1\n\
+              cargo:rustc-flags=FLAG2\n"
         );
     }
 }

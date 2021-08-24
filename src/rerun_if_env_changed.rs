@@ -63,7 +63,9 @@ mod tests {
                     "KEY3",
                 );
             }),
-            @"cargo:rerun-if-env-changed=KEY1\ncargo:rerun-if-env-changed=KEY2\ncargo:rerun-if-env-changed=KEY3\n"
+            @"cargo:rerun-if-env-changed=KEY1\n\
+              cargo:rerun-if-env-changed=KEY2\n\
+              cargo:rerun-if-env-changed=KEY3\n"
         );
     }
 }

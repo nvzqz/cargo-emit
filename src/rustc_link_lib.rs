@@ -108,7 +108,8 @@ mod tests {
                     name2 => kind2,
                 );
             }),
-            @"cargo:rustc-link-lib=KIND1=NAME1\ncargo:rustc-link-lib=KIND2=NAME2\n"
+            @"cargo:rustc-link-lib=KIND1=NAME1\n\
+              cargo:rustc-link-lib=KIND2=NAME2\n"
         );
     }
 }

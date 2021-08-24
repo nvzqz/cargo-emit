@@ -52,7 +52,8 @@ mod tests {
                     "ARG2",
                 );
             }),
-            @"cargo:rustc-cdylib-link-arg=ARG1\ncargo:rustc-cdylib-link-arg=ARG2\n"
+            @"cargo:rustc-cdylib-link-arg=ARG1\n\
+              cargo:rustc-cdylib-link-arg=ARG2\n"
         );
     }
 }

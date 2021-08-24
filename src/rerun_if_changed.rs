@@ -84,7 +84,10 @@ mod tests {
                     "/path/to/resource4",
                 );
             }),
-            @"cargo:rerun-if-changed=/path/to/resource1\ncargo:rerun-if-changed=/path/to/resource2\ncargo:rerun-if-changed=/path/to/resource3\ncargo:rerun-if-changed=/path/to/resource4\n"
+            @"cargo:rerun-if-changed=/path/to/resource1\n\
+              cargo:rerun-if-changed=/path/to/resource2\n\
+              cargo:rerun-if-changed=/path/to/resource3\n\
+              cargo:rerun-if-changed=/path/to/resource4\n"
         );
     }
 
@@ -100,7 +103,10 @@ mod tests {
                     PathBuf::from("/path/to/resource4").display(),
                 );
             }),
-            @"cargo:rerun-if-changed=/path/to/resource1\ncargo:rerun-if-changed=/path/to/resource2\ncargo:rerun-if-changed=/path/to/resource3\ncargo:rerun-if-changed=/path/to/resource4\n"
+            @"cargo:rerun-if-changed=/path/to/resource1\n\
+              cargo:rerun-if-changed=/path/to/resource2\n\
+              cargo:rerun-if-changed=/path/to/resource3\n\
+              cargo:rerun-if-changed=/path/to/resource4\n"
         );
     }
 
@@ -116,7 +122,10 @@ mod tests {
                     PathBuf::from("/path/to/resource4").display(),
                 );
             }),
-            @"cargo:rerun-if-changed=/path/to/resource1\ncargo:rerun-if-changed=/path/to/resource2\ncargo:rerun-if-changed=/path/to/resource3\ncargo:rerun-if-changed=/path/to/resource4\n"
+            @"cargo:rerun-if-changed=/path/to/resource1\n\
+              cargo:rerun-if-changed=/path/to/resource2\n\
+              cargo:rerun-if-changed=/path/to/resource3\n\
+              cargo:rerun-if-changed=/path/to/resource4\n"
         );
     }
 }
