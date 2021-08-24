@@ -38,3 +38,32 @@ macro_rules! rustc_cfg {
         $crate::rustc_cfg!(to: std::io::stdout(), $feature $(, $($args)+)?);
     };
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn literal() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                crate::rustc_cfg!(
+                    to: output,
+                    "CFG"
+                );
+            }),
+            @r###""cargo:rustc-cfg=CFG\n""###
+        );
+    }
+
+    #[test]
+    fn formatted() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                crate::rustc_cfg!(
+                    to: output,
+                    "{}", "CFG"
+                );
+            }),
+            @r###""cargo:rustc-cfg=CFG\n""###
+        );
+    }
+}

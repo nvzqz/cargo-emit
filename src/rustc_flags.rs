@@ -16,7 +16,7 @@
 /// ```
 /// let git_rev_hash = //
 /// # "0000111122223333444455556666777788889999";
-/// cargo_emit::rustc_env!("MY_HASH", "{}", git_rev_hash);
+/// cargo_emit::rustc_flags!("-l pthread");
 /// ```
 #[macro_export]
 macro_rules! rustc_flags {
@@ -27,9 +27,39 @@ macro_rules! rustc_flags {
         $($crate::pair!(to: $stream, "rustc-flags", "{}", $flags);)+
     };
     ($($flags:literal),+ $(,)?) => {
-        $crate::rustc_flags!(to: std::io::stdout(), $flags);
+        $crate::rustc_flags!(to: std::io::stdout(), $($flags),+);
     };
     ($($flags:expr),+ $(,)?) => {
-        $crate::rustc_flags!(to: std::io::stdout(), $flags);
+        $crate::rustc_flags!(to: std::io::stdout(), $($flags),+);
     };
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn single() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                crate::rustc_flags!(
+                    to: output,
+                    "FLAG"
+                );
+            }),
+            @r###""cargo:rustc-flags=FLAG\n""###
+        );
+    }
+
+    #[test]
+    fn multiple() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                crate::rustc_flags!(
+                    to: output,
+                    "FLAG1",
+                    "FLAG2",
+                );
+            }),
+            @r###""cargo:rustc-flags=FLAG1\ncargo:rustc-flags=FLAG2\n""###
+        );
+    }
 }

@@ -102,3 +102,13 @@ mod rustc_flags;
 mod rustc_link_lib;
 mod rustc_link_search;
 mod warning;
+
+#[cfg(test)]
+fn capture_output<F>(f: F) -> String
+where
+    F: FnOnce(&mut String),
+{
+    let mut output = String::new();
+    f(&mut output);
+    output
+}

@@ -32,3 +32,33 @@ macro_rules! rustc_cdylib_link_arg {
         $crate::rustc_cdylib_link_arg!(to: std::io::stdout(), $($flag),+);
     };
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn single() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                crate::rustc_cdylib_link_arg!(
+                    to: output,
+                    "ARG"
+                );
+            }),
+            @r###""cargo:rustc-cdylib-link-arg=ARG\n""###
+        );
+    }
+
+    #[test]
+    fn multiple() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                crate::rustc_cdylib_link_arg!(
+                    to: output,
+                    "ARG1",
+                    "ARG2",
+                );
+            }),
+            @r###""cargo:rustc-cdylib-link-arg=ARG1\ncargo:rustc-cdylib-link-arg=ARG2\n""###
+        );
+    }
+}

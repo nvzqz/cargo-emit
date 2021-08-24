@@ -8,7 +8,7 @@
 ///
 /// # Examples
 ///
-/// Useful for telling the linker where a library can be found.
+/// Useful for telling the linker where a path can be found.
 ///
 /// ```
 /// cargo_emit::rustc_link_search!(
@@ -31,7 +31,7 @@ macro_rules! rustc_link_search {
         $crate::pair!(to: $stream, "rustc-link-search", "{}={}", $kind, $path);
     };
     (to: $stream:expr, $($path:expr $(=> $kind:expr)?),+ $(,)?) => { {
-        $($crate::rustc_link_lib!(to: $stream, $path $(=> $kind)?);)+
+        $($crate::rustc_link_search!(to: $stream, $path $(=> $kind)?);)+
     } };
 
     ($path:literal $(,)?) => {
@@ -49,4 +49,78 @@ macro_rules! rustc_link_search {
     ($($path:expr $(=> $kind:expr)?),+ $(,)?) => { {
         $($crate::rustc_link_search!(to: std::io::stdout(), $path $(=> $kind)?);)+
     } };
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn single_name_literal() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                crate::rustc_link_search!(
+                    to: output,
+                    "PATH"
+                );
+            }),
+            @r###""cargo:rustc-link-search=PATH\n""###
+        );
+    }
+
+    #[test]
+    fn single_name_expression() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                let path = "PATH";
+                crate::rustc_link_search!(
+                    to: output,
+                    path
+                );
+            }),
+            @r###""cargo:rustc-link-search=PATH\n""###
+        );
+    }
+
+    #[test]
+    fn single_name_literal_with_kind() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                crate::rustc_link_search!(
+                    to: output,
+                    "PATH" => "KIND"
+                );
+            }),
+            @r###""cargo:rustc-link-search=KIND=PATH\n""###
+        );
+    }
+
+    #[test]
+    fn single_name_expression_with_kind() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                let path = "PATH";
+                let kind = "KIND";
+                crate::rustc_link_search!(
+                    to: output,
+                    path => kind
+                );
+            }),
+            @r###""cargo:rustc-link-search=KIND=PATH\n""###
+        );
+    }
+
+    #[test]
+    fn multiple_name_expression_with_kind() {
+        insta::assert_debug_snapshot!(
+            crate::capture_output(|output| {
+                let path2 = "PATH2";
+                let kind2 = "KIND2";
+                crate::rustc_link_search!(
+                    to: output,
+                    "PATH1" => "KIND1",
+                    path2 => kind2,
+                );
+            }),
+            @r###""cargo:rustc-link-search=KIND1=PATH1\ncargo:rustc-link-search=KIND2=PATH2\n""###
+        );
+    }
 }
