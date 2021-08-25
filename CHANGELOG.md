@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog] and this project adheres to
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed recursion in `rustc_link_search!(…)`.
+- Removed redundant `$x:literal` macro patterns.
+
+### Added
+
+- 40 snapshot tests (using [insta](https://crates.io/crates/insta))
+- Optional `to:` parameter for writing into a `std::fmt::Write` or `io::fmt::Write`.
+
+# Removed
+
+- `#![no_std]`, since the project never worked on no_std to begin with.
+
 ## [0.1.1] - 2019-12-15
 
 ### Fixed
