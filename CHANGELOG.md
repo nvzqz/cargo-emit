@@ -16,6 +16,9 @@ The format is based on [Keep a Changelog] and this project adheres to
 
 - 40 snapshot tests (using [insta](https://crates.io/crates/insta))
 - Optional `to:` parameter for writing into a `std::fmt::Write` or `io::fmt::Write`.
+- `rustc_link_arg!($arg)` macro equivalent to `cargo:rustc-link-arg=$arg`
+- `rustc_link_arg_bin!($bin => $arg)` macro equivalent to `cargo:rustc-link-arg-bin=$bin=$arg`
+- `rustc_link_arg_bins!($arg)` macro equivalent to `cargo:rustc-link-arg-bins=$arg`
 
 # Removed
 
