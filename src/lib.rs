@@ -88,8 +88,9 @@
 //! [`build.rs`]: https://doc.rust-lang.org/cargo/reference/build-scripts.html
 
 #![doc(html_root_url = "https://docs.rs/cargo-emit/0.1.1")]
-#![doc(html_logo_url = "https://raw.githubusercontent.com/nvzqz/cargo-emit/assets/logo.svg?sanitize=true")]
-
+#![doc(
+    html_logo_url = "https://raw.githubusercontent.com/nvzqz/cargo-emit/assets/logo.svg?sanitize=true"
+)]
 #![deny(missing_docs)]
 
 mod pair;
