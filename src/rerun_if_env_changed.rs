@@ -1,12 +1,12 @@
-/// Tells Cargo to run again if the file or directory at `$var` changes.
+/// Tells Cargo to run again if the file or directory at `$key` changes.
 ///
 /// This is equivalent to:
 ///
 /// ```
-/// println!("cargo:rerun-if-env-changed=$var");
+/// println!("cargo:rerun-if-env-changed=$key");
 /// ```
 ///
-/// `$var` is the name of an environment variable which indicates that if the
+/// `$key` is the name of an environment variable which indicates that if the
 /// environment variable's value changes the build script should be rerun. This
 /// basically behaves the same as [`rerun_if_changed!`] except that it works
 /// with environment variables instead. Note that the environment variables here
@@ -39,11 +39,11 @@
 /// [`rerun_if_env_changed!`]: macro.rerun_if_env_changed.html
 #[macro_export]
 macro_rules! rerun_if_env_changed {
-    (to: $stream:expr, $($var:expr),+ $(,)?) => {
-        $($crate::pair!(to: $stream, "rerun-if-env-changed", "{}", $var);)+
+    (to: $stream:expr, $($key:expr),+ $(,)?) => {
+        $($crate::pair!(to: $stream, "rerun-if-env-changed", "{}", $key);)+
     };
-    ($($var:expr),+ $(,)?) => {
-        $crate::rerun_if_env_changed!(to: std::io::stdout(), "{}", $($var),+);
+    ($($key:expr),+ $(,)?) => {
+        $crate::rerun_if_env_changed!(to: std::io::stdout(), "{}", $($key),+);
     };
 }
 
