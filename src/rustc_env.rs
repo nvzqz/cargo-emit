@@ -1,16 +1,16 @@
-/// Tells Cargo to assign `$var` for the environment variable for `$key`.
+/// Tells Cargo to assign `$key` for the environment variable for `$key`.
 ///
 /// This is equivalent to:
 ///
 /// ```
-/// println!("cargo:rustc-env=$var=$value");
+/// println!("cargo:rustc-env=$key=$value");
 /// ```
 ///
 /// # Examples
 ///
 /// Useful for injecting environment variables during the build.
 ///
-/// The `$var` and `$value` parameters get concatenated into a single formatting
+/// The `$key` and `$value` parameters get concatenated into a single formatting
 /// string. Formatting runtime values can be done by passing subsequent values.
 ///
 /// ```
@@ -32,11 +32,11 @@
 /// ```
 #[macro_export]
 macro_rules! rustc_env {
-    (to: $stream:expr, $var:expr, $value:expr $(, $($args:tt)*)?) => {
-        $crate::pair!(to: $stream, "rustc-env", concat!($var, "=", $value) $(, $($args)+)?);
+    (to: $stream:expr, $key:expr, $value:expr $(, $($args:tt)*)?) => {
+        $crate::pair!(to: $stream, "rustc-env", concat!($key, "=", $value) $(, $($args)+)?);
     };
-    ($var:expr, $value:expr $(, $($args:tt)*)?) => {
-        $crate::rustc_env!(to: std::io::stdout(), $var, $value $(, $($args)+)?);
+    ($key:expr, $value:expr $(, $($args:tt)*)?) => {
+        $crate::rustc_env!(to: std::io::stdout(), $key, $value $(, $($args)+)?);
     };
 }
 
