@@ -100,6 +100,7 @@ mod rustc_cdylib_link_arg;
 mod rustc_cfg;
 mod rustc_env;
 mod rustc_flags;
+mod rustc_link_arg;
 mod rustc_link_lib;
 mod rustc_link_search;
 mod warning;
