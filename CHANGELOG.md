@@ -1,4 +1,5 @@
 # Changelog [![Crates.io][crate-badge]][crate]
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog] and this project adheres to
@@ -23,11 +24,13 @@ The format is based on [Keep a Changelog] and this project adheres to
 ## [0.1.1] - 2019-12-15
 
 ### Fixed
+
 - Links to docs for specific macros.
 
 ## 0.1.0 - 2019-12-15
 
 ### Added
+
 - [`pair!`](https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.pair.html)
 - [`rerun_if_changed!`](https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rerun_if_changed.html)
 - [`rerun_if_env_changed!`](https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rerun_if_env_changed.html)
