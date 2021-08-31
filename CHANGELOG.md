@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog] and this project adheres to
 
 ## [Unreleased]
 
+## [0.2.0] - 2021-08-31
+
 ### Fixed
 
 - Fixed recursion in `rustc_link_search!(…)`.
@@ -14,11 +16,11 @@ The format is based on [Keep a Changelog] and this project adheres to
 
 ### Added
 
+- [`rustc_link_arg!`](https://docs.rs/cargo-emit/0.2.0/cargo_emit/macro.rustc_link_arg.html)
+- [`rustc_link_arg_bin!`](https://docs.rs/cargo-emit/0.2.0/cargo_emit/macro.rustc_link_arg_bin.html)
+- [`rustc_link_arg_bins!`](https://docs.rs/cargo-emit/0.2.0/cargo_emit/macro.rustc_link_arg_bins.html)
 - 40 snapshot tests (using [insta](https://crates.io/crates/insta))
 - Optional `to:` parameter for writing into a `std::fmt::Write` or `io::fmt::Write`.
-- `rustc_link_arg!($arg)` macro equivalent to `cargo:rustc-link-arg=$arg`
-- `rustc_link_arg_bin!($bin => $arg)` macro equivalent to `cargo:rustc-link-arg-bin=$bin=$arg`
-- `rustc_link_arg_bins!($arg)` macro equivalent to `cargo:rustc-link-arg-bins=$arg`
 
 # Removed
 

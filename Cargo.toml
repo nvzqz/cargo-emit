@@ -1,7 +1,7 @@
 [package]
 name = "cargo-emit"
-version = "0.1.1"
-authors = ["Nikolai Vazquez"]
+version = "0.2.0"
+authors = ["Nikolai Vazquez", "Vincent Esche"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 homepage = "https://github.com/nvzqz/cargo-emit"
