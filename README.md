@@ -45,27 +45,30 @@ This library provides:
 ## Usage
 
 This crate exposes the following macros:
-- [`pair!`]
-- [`rerun_if_changed!`]
-- [`rerun_if_env_changed!`]
-- [`rustc_cdylib_link_arg!`]
-- [`rustc_cfg!`]
-- [`rustc_env!`]
-- [`rustc_flags!`]
-- [`rustc_link_lib!`]
-- [`rustc_link_search!`]
-- [`warning!`]
 
-[`pair!`]:                  https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.pair.html
-[`rerun_if_changed!`]:      https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rerun_if_changed.html
-[`rerun_if_env_changed!`]:  https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rerun_if_env_changed.html
-[`rustc_cdylib_link_arg!`]: https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_cdylib_link_arg.html
-[`rustc_cfg!`]:             https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_cfg.html
-[`rustc_env!`]:             https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_env.html
-[`rustc_flags!`]:           https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_flags.html
-[`rustc_link_lib!`]:        https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_link_lib.html
-[`rustc_link_search!`]:     https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_link_search.html
-[`warning!`]:               https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.warning.html
+| Macro                                  | Output                                |
+|----------------------------------------|---------------------------------------|
+| [`pair!($key, $value)`]                | `cargo:$key=$value`                   |
+| [`rerun_if_changed!($path)`]           | `cargo:rerun-if-changed=$path`        |
+| [`rerun_if_env_changed!($key)`]        | `cargo:rerun-if-env-changed=$key`     |
+| [`rustc_cdylib_link_arg!($flag)`]      | `cargo:rustc-cdylib-link-arg=$flag`   |
+| [`rustc_cfg!($feature)`]               | `cargo:rustc-cfg=$feature`            |
+| [`rustc_env!($key, $value)`]           | `cargo:rustc-env=$key=$value`         |
+| [`rustc_flags!($flags)`]               | `cargo:rustc-flags=$flags`            |
+| [`rustc_link_lib!($name => $kind)`]    | `cargo:rustc-link-lib=$kind=$name`    |
+| [`rustc_link_search!($path => $kind)`] | `cargo:rustc-link-search=$kind=$path` |
+| [`warning!($message)`]                 | `cargo:warning=$message`              |
+
+[`pair!($key, $value)`]:                  https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.pair.html
+[`rerun_if_changed!($path)`]:      https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rerun_if_changed.html
+[`rerun_if_env_changed!($key)`]:  https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rerun_if_env_changed.html
+[`rustc_cdylib_link_arg!($flag)`]: https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_cdylib_link_arg.html
+[`rustc_cfg!($feature)`]:             https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_cfg.html
+[`rustc_env!($key, $value)`]:             https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_env.html
+[`rustc_flags!($flags)`]:           https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_flags.html
+[`rustc_link_lib!($name => $kind)`]:        https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_link_lib.html
+[`rustc_link_search!($path => $kind)`]:     https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.rustc_link_search.html
+[`warning!($message)`]:               https://docs.rs/cargo-emit/0.1.0/cargo_emit/macro.warning.html
 
 ## License
 
