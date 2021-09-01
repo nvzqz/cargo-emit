@@ -58,7 +58,6 @@ This crate exposes the following macros:
 | [`rustc_link_arg!($arg)`]              | `cargo:rustc-link-arg=$arg`           |
 | [`rustc_link_arg_bin!($bin => $arg)`]  | `cargo:rustc-link-arg-bin=$bin=$arg`  |
 | [`rustc_link_arg_bins!($arg)`]         | `cargo:rustc-link-arg-bins=$arg`      |
-| [`rustc_link_arg_bin!($bin => $arg)`]  | `cargo:rustc-link-arg-bin=$bin=$arg`  |
 | [`rustc_link_lib!($name => $kind)`]    | `cargo:rustc-link-lib=$kind=$name`    |
 | [`rustc_link_search!($path => $kind)`] | `cargo:rustc-link-search=$kind=$path` |
 | [`warning!($message)`]                 | `cargo:warning=$message`              |
@@ -73,7 +72,6 @@ This crate exposes the following macros:
 [`rustc_link_arg!($arg)`]:        https://docs.rs/cargo-emit/latest/cargo_emit/macro.rustc_link_arg.html
 [`rustc_link_arg_bin!($bin => $arg)`]:    https://docs.rs/cargo-emit/latest/cargo_emit/macro.rustc_link_arg_bin.html
 [`rustc_link_arg_bins!($arg)`]:   https://docs.rs/cargo-emit/latest/cargo_emit/macro.rustc_link_arg_bins.html
-[`rustc_link_arg_bin!($bin => $arg)`]:    https://docs.rs/cargo-emit/latest/cargo_emit/macro.rustc_link_arg_bin.html
 [`rustc_link_lib!($name => $kind)`]:        https://docs.rs/cargo-emit/latest/cargo_emit/macro.rustc_link_lib.html
 [`rustc_link_search!($path => $kind)`]:     https://docs.rs/cargo-emit/latest/cargo_emit/macro.rustc_link_search.html
 [`warning!($message)`]:               https://docs.rs/cargo-emit/latest/cargo_emit/macro.warning.html
