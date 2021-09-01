@@ -41,6 +41,7 @@ macro_rules! pair {
         #[allow(unused_imports)]
         use std::{fmt::Write as _, io::Write as _};
 
+        #[allow(clippy::explicit_write)]
         writeln!($stream, concat!("cargo:", $key, "=", $value) $(, $($args)*)?).unwrap()
     }};
     ($key:expr, $value:expr $(, $($args:tt)*)?) => {

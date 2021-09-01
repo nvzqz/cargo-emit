@@ -93,18 +93,31 @@
 )]
 #![deny(missing_docs)]
 
+/// `cargo:$key=$value`
 mod pair;
+/// `cargo:rerun-if-changed=$path`
 mod rerun_if_changed;
+/// `cargo:rerun-if-env-changed=$key`
 mod rerun_if_env_changed;
+/// `cargo:rustc-cdylib-link-arg=$flag`
 mod rustc_cdylib_link_arg;
+/// `cargo:rustc-cfg=$feature`
 mod rustc_cfg;
+/// `cargo:rustc-env=$key=$value`
 mod rustc_env;
+/// `cargo:rustc-flags=$flags`
 mod rustc_flags;
+/// `cargo:rustc-link-arg=$arg`
 mod rustc_link_arg;
+/// `cargo:rustc-link-arg-bin=$bin=$arg`
 mod rustc_link_arg_bin;
+/// `cargo:rustc-link-arg-bins=$arg`
 mod rustc_link_arg_bins;
+/// `cargo:rustc-link-lib=$kind=$name`
 mod rustc_link_lib;
+/// `cargo:rustc-link-search=$kind=$path`
 mod rustc_link_search;
+/// `cargo:warning=$message`
 mod warning;
 
 #[cfg(test)]
