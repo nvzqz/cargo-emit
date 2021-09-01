@@ -7,6 +7,13 @@ The format is based on [Keep a Changelog] and this project adheres to
 
 ## [Unreleased]
 
+## [0.2.1] - 2021-09-01
+
+### Fixed
+
+- Added `#[allow(clippy::explicit_write)]` to prevent false-positives.
+- Added `examples/macros.rs` file and corresponding `cargo clippy --example "macros" -- -D warnings` CI job to prevent future clippy issues.
+
 ## [0.2.0] - 2021-08-31
 
 ### Fixed
