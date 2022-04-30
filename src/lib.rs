@@ -41,7 +41,7 @@
 //!
 //! ```toml
 //! [build-dependencies]
-//! cargo-emit = "0.1"
+//! cargo-emit = "0.2"
 //! ```
 //!
 //! and something like this to your [`build.rs`]:
