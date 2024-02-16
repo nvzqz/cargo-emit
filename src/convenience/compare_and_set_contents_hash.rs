@@ -14,10 +14,17 @@ pub enum HashFileOutcome {
     Unchanged,
 }
 
-/// Check if the contents of a file have changed using its hash instead of its modification time.
+/// Check if the contents of a file have changed using its hash instead of its modification time. Currently,
+/// this function does not support directories. See <https://github.com/nvzqz/cargo-emit/pull/9>.
 pub fn compare_and_set_contents_hash(path: &str) -> HashFileOutcome {
     let computed_contents_hash: u64 = {
         let mut hasher = FxHasher::default();
+        if std::fs::metadata(path)
+            .expect(format!("failed to get metadata for '{}'", path).as_str())
+            .is_dir()
+        {
+            panic!("The current implementation does not support directories. See <https://github.com/nvzqz/cargo-emit/pull/9>");
+        }
         let file =
             std::fs::File::open(path).expect(format!("failed to open file at '{}'", path).as_str());
         let mut reader = std::io::BufReader::new(file);
