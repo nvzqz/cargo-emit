@@ -120,6 +120,9 @@ mod rustc_link_search;
 /// `cargo:warning=$message`
 mod warning;
 
+/// Convenience items for build scripts.
+pub mod convenience;
+
 #[cfg(test)]
 fn capture_output<F>(f: F) -> String
 where
