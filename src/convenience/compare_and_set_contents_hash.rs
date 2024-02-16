@@ -4,9 +4,13 @@ use fxhash::FxHasher;
 
 const CARGO_EMIT_VERSION: &str = env!("CARGO_PKG_VERSION");
 
+/// The result of comparing the contents of a file using its hash.
 pub enum HashFileOutcome {
+    /// A fresh "hash file" with the hashed contents of the file-argument has been created.
     Created,
+    /// Based on the "hash file", he contents of the file-argument have changed.
     Changed,
+    /// Based on the "hash file", the contents of the file-argument have not changed.
     Unchanged,
 }
 
